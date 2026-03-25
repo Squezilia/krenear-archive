@@ -1,0 +1,108 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  // Meta
+  id        String   @id @default(cuid())
+  username  String   @unique
+  password  String
+  createdAt DateTime @default(now())
+
+  // Permission
+  suspended Boolean  @default(false)
+  roles     String[]
+
+  // Relational
+  deployments Deployment[]
+  workers     Worker[]
+
+  // Security
+  loginAttempts    Int      @default(0)
+  lastLoginAttempt DateTime @default(now())
+  ipAdress         String
+
+  // User Limits
+  subscription          String[]
+  subscriptionStartDate DateTime @default(now())
+  subscriptionEndDate   DateTime
+}
+
+model Deployment {
+  // Meta
+  id            String   @id @default(cuid())
+  name          String
+  createdAt     DateTime @default(now())
+  defaultDomain String
+  domains       String[]
+
+  // Relational
+  records Record[]
+  workers Worker[]
+  owner   User     @relation(fields: [ownerId], references: [id])
+  ownerId String
+
+  // Configuration Meta
+  configuration String
+  version       String
+
+  // Configuration
+  labels  String[] // !DEPRECATED
+  schemas Schema[]
+}
+
+model Schema {
+  id    String   @id @default(cuid())
+  icon  String
+  name  String
+  types String[]
+
+  Deployment   Deployment? @relation(fields: [deploymentId], references: [id])
+  deploymentId String?
+  Record       Record[]
+}
+
+model Record {
+  // Meta
+  id        String   @id @default(cuid())
+  updatedAt DateTime @default(now())
+  createdAt DateTime @default(now())
+
+  // Relational
+  Deployment   Deployment @relation(fields: [deploymentId], references: [id])
+  deploymentId String
+
+  // Data
+  data Json
+
+  schema   Schema @relation(fields: [schemaId], references: [id])
+  schemaId String
+}
+
+model Worker {
+  // Meta
+  id               String   @id @default(cuid())
+  status           String
+  executionHistory String[]
+
+  // Relational
+  Deployment   Deployment? @relation(fields: [deploymentId], references: [id])
+  deploymentId String?
+  user         User?       @relation(fields: [userId], references: [id])
+  userId       String?
+
+  isRunning Boolean @default(false)
+
+  // Data
+  logs String[]
+}
+
+model IPLogs {
+  ip         String @id
+  errorCount Int
+}

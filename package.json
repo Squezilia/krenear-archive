@@ -1,0 +1,22 @@
+{
+  "name": "krenear-archive",
+  "module": "index.ts",
+  "type": "module",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "backend:dev": "bun run --watch apps/backend/src/load.ts --dev",
+    "backend:build": "bun --cwd=apps/backend tsc",
+    "frontend:dev": "bun --cwd=apps/frontend --env-file=../../.env vite",
+    "frontend:build": "bun --cwd=apps/frontend --env-file=../../.env vite build",
+    "database:generate": "bun prisma generate --schema=apps/backend/prisma/schema.prisma",
+    "database:push": "bun prisma db push --schema=apps/backend/prisma/schema.prisma"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

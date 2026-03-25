@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "incremental": true,
+    "composite": true,
+    "target": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "skipLibCheck": true,
+    "outDir": "dist"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}

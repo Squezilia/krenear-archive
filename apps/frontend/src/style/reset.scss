@@ -1,0 +1,71 @@
+*, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'SF Pro Display', sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 500;
+}
+
+svg {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    width: 1em;
+    height: 1em;
+}
+
+body {
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 700;
+}
+
+html {font-size: 20px;} /* 16px */
+
+h1 {font-size: 1.802rem; /* 28.8px */}
+
+h2 {font-size: 1.602rem; /* 25.6px */}
+
+h3 {font-size: 1.424rem; /* 22.72px */}
+
+h4 {font-size: 1.266rem; /* 20.32px */}
+
+h5 {font-size: 1.125rem; /* 18.08px */}
+
+small {font-size: 0.889rem; /* 14.24px */}
+
+@media screen and (max-width: 1600px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+figure {
+  &.xs, &.xs img {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: .35rem;
+  }
+
+  &.s, &.s img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: .5rem;
+  }
+
+  &.m, &.m img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: .5rem;
+  }
+
+  &.l, &.l img {
+    width: 5rem;
+    height: 5rem;
+    border-radius: .75rem;
+  }
+}

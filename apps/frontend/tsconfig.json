@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleDetection": "auto",
+    "moduleResolution": "Bundler",
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "strict": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules/**/*"]
+}
